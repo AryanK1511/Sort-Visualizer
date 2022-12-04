@@ -1,6 +1,7 @@
 // ==================== CREATING BARS AND IMPLEMENTING SORTING ALGORITHMS ====================
 const barsContainer = document.querySelector(".bars-container");
 const randomizeButton = document.querySelector(".randomize-btn");
+const dropdownItems = document.querySelectorAll(".dropdown-item");
 
 // Function to generate a random number within the given range
 function generateRandomNumber(start, end) {
@@ -8,7 +9,7 @@ function generateRandomNumber(start, end) {
 }
 
 // Function to create bars
-function generateBars(numberOfBars) {
+function generateBars(numberOfBars = 25) {
     for (let i = 0; i < numberOfBars; i++) {
         const bar = document.createElement('div');
         const barHeight = generateRandomNumber(1, 30);
@@ -25,12 +26,23 @@ function clearBars() {
     bars.forEach(bar => barsContainer.removeChild(bar));
 }
 
+// Ensuring that the number of bars change according to the user's choice
+dropdownItems.forEach(dropdownItem => {
+    dropdownItem.addEventListener('click', () => {
+        const numberOfBarsRequestedByUser = dropdownItem.innerHTML;
+        clearBars();
+        generateBars(numberOfBarsRequestedByUser);
+    })
+})
+
+// Makes sure that the bars are reset once the randomize button is clicked
 randomizeButton.addEventListener('click', () => {
     clearBars();
     generateBars(20);
 });
 
-generateBars(20);
+// Generates bars by default when the page is loaded
+generateBars();
 
 // ==================== JS for dropdown menu on the homepage ====================
 const dropdowns = document.querySelectorAll('.algo-dropdown');
