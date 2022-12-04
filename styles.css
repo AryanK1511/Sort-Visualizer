@@ -7,14 +7,19 @@
 
 /* ========== Navbar ========== */
 .navbar {
-    background-color: #090909;
+    background-color: #010514;
+    box-shadow: 0 4px 5px 0 rgba(0,0,0,.9);
 }
 
 .navbar-brand {
-    color: #fff;
+    color: #fedfb4;
     font-size: 2.8rem;
     font-weight: 600;
     font-family: 'Teko', sans-serif;
+}
+
+.navbar-brand:hover {
+    color: #fedfb4;
 }
 
 .navbar-toggler {
@@ -22,22 +27,40 @@
 }
 
 .nav-link {
-    color: #fff;
+    color: #fedfb4;
+    font-weight: bold;
+    font-size: larger;
+    transition: 0.5s;
+}
+
+.nav-link:hover {
+    color: #fedfb4;
+    transform: scale(1.1);
 }
 
 /* ========== Homepage ========== */
 
 /* Intro */
+.sort-details {
+    background-color: #010514;
+    padding: 150px;
+}
+
+.heading-box {
+    width: 600px;
+}
+
 .heading {
     font-size: 3rem;
     font-weight: 700;
+    font-family: 'Alexandria', sans-serif;
+    color: #fb8700;
 }
 
 /* Dropdown Menu */
 .algo-dropdown {
-    min-width: 15em;
+    width: 300px;
     position: relative;
-    margin: 2em;
 }
 
 .algo-dropdown * {
