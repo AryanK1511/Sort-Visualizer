@@ -155,16 +155,10 @@
 }
 
 /* Bars */
-.sort-bars {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 .bars-container {
-    display: flex;
-    text-align: center;
-    width: 80vw;
+    width: 600px;
+    height: 384px;
+    position: relative;
     margin: 0 auto;
 }
 
@@ -176,4 +170,27 @@
     bottom: 0;
 }
 
+/* Buttons */
+.buttons {
+    text-align: center;
+}
+
+.start-btn {
+    padding: 20px;
+    color: #fedfb4;
+    text-shadow: 0 0 0.9em #fedfb4;
+    width: 145px;
+    border-radius: 0.5em;
+    margin: 40px;
+    background: transparent;
+    border: 2px solid #fedfb4;
+    box-shadow: 0 0 0.9em #fedfb4;
+    transition: 0.3s;
+    font-weight: 600;
+}
+
+.start-btn:hover {
+    background-color: #fedfb4;
+    color: #010514;
+}
 /* ========== Making the website responsive ========== */
