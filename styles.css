@@ -6,6 +6,23 @@
 }
 
 /* ========== Navbar ========== */
+.navbar {
+    background-color: #090909;
+}
+
+.navbar-brand {
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.navbar-toggler {
+    border: 2px solid #fff;
+}
+
+.nav-link {
+    color: #fff;
+}
 
 /* ========== Homepage ========== */
 
