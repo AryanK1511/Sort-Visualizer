@@ -6,6 +6,7 @@ const infoParagraph = document.querySelector(".info-para");
 const bubbleSortButton = document.getElementById("bubble-sort-selection");
 const selectionSortButton = document.getElementById("selection-sort-selection");
 const insertionSortButton = document.getElementById("insertion-sort-selection");
+const sortStartButton = document.querySelector(".start-btn");
 
 let arr = [];
 
@@ -21,9 +22,9 @@ function generateBars(numberOfBars = 25) {
         const barHeight = generateRandomNumber(1, 30);
         bar.classList.add('bar');
         bar.style.transform = `translateX(${i * 30}px)`;
-        bar.style.height = `${barHeight * 10}px`;
+        bar.style.height = `${(barHeight * 10) + 5}px`;
         bar.id = i;
-        bar.style.width = `30px`;
+        bar.style.width = `${800 / numberOfBars}px`;
 
         // Pushing the height as the value of an element in the array
         arr.push(bar.style.height);
@@ -52,7 +53,7 @@ dropdownItems.forEach(dropdownItem => {
 // Makes sure that the bars are reset once the randomize button is clicked
 randomizeButton.addEventListener('click', () => {
     clearBars();
-    generateBars(20);
+    generateBars();
 });
 
 // Generates bars by default when the page is loaded
@@ -90,6 +91,10 @@ insertionSortButton.addEventListener('click', () => {
       <li>Worst-case space complexity: O(1)</li>
     </ul>
   </p>`;
+})
+
+sortStartButton.addEventListener('click', () => {
+    console.log("HJello");
 })
 
 // ==================== JS for dropdown menu on the homepage ====================
