@@ -159,17 +159,16 @@
 .bars-container {
     width: 800px;
     height: 384px;
-    position: relative;
     margin: 0 auto;
+    position: relative;
 }
 
 .bar {
-    background-color: red;
     border: 2px solid black;
+    display: inline-block;
+    background-color: #eb0a42;
     position: absolute;
-    margin-right: 200px;
-    left: 0;
-    bottom: 0;
+    bottom: 0px;
 }
 
 /* Buttons */
