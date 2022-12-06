@@ -27,13 +27,18 @@ function generateRandomNumber(start, end) {
 function generateBars(numberOfBars = 25) {
   sortStartButton.disabled = false;
   for (let i = 0; i < numberOfBars; i++) {
+    // Creating a div and assigning a random height to it
     const bar = document.createElement("div");
     const barHeight = generateRandomNumber(1, 30);
+
+    // Adding styles
     bar.classList.add("bar");
     bar.style.transform = `translateX(${i * (1000 / numberOfBars)}px)`;
     bar.style.height = `${barHeight * 10 + 5}px`;
-    bar.id = i;
     bar.style.width = `${1000 / numberOfBars}px`;
+
+    // Assiging each div a unique id to reference individual bars later in the code
+    bar.id = i;
 
     // Pushing the height as the value of an element in the array
     arr.push(barHeight * 10 + 5);
@@ -45,6 +50,7 @@ function generateBars(numberOfBars = 25) {
 
 // Function to delete all the bars
 function clearBars() {
+    // Removing all the child divs and emptying the array of heights
   let bars = document.querySelectorAll(".bar");
   bars.forEach((bar) => barsContainer.removeChild(bar));
   arr = [];
@@ -103,11 +109,7 @@ async function bubbleSort(arr) {
       bar1.style.backgroundColor = "#fef0a3";
       bar2.style.backgroundColor = "#fef0a3";
 
-      await new Promise((resolve) =>
-        setTimeout(() => {
-          resolve();
-        }, timeoutTime)
-      );
+      await new Promise(r => setTimeout(r, timeoutTime));
 
       if (arr[j] > arr[j + 1]) {
         let temp = arr[j];
@@ -122,11 +124,7 @@ async function bubbleSort(arr) {
         bar1.style.backgroundColor = "#5b3d5a";
         bar2.style.backgroundColor = "#5b3d5a";
 
-        await new Promise((resolve) =>
-          setTimeout(() => {
-            resolve();
-          }, timeoutTime)
-        );
+        await new Promise(r => setTimeout(r, timeoutTime));
       }
 
       bar1.style.backgroundColor = "#eb0a42";
@@ -157,18 +155,13 @@ selectionSortButton.addEventListener("click", () => {
 // Implementing the algorithm
 async function selectionSort(arr) {
   let n = arr.length;
-  let bar1, bar2;
   for (let i = 0; i < n - 1; i++) {
     let minPos = i;
     document.getElementById(i).style.backgroundColor = "#5b3d5a";
     for (let j = i + 1; j < n; j++) {
       document.getElementById(j).style.backgroundColor = "#fef0a3";
 
-      await new Promise((resolve) =>
-        setTimeout(() => {
-          resolve();
-        }, timeoutTime)
-      );
+      await new Promise(r => setTimeout(r, timeoutTime));
 
       if (arr[minPos] > arr[j]) {
         if (minPos !== i) {
@@ -192,11 +185,7 @@ async function selectionSort(arr) {
     document.getElementById(i).style.height = tempBarHeight;
     document.getElementById(minPos).style.backgroundColor = "#eb0a42";
 
-    await new Promise((resolve) =>
-      setTimeout(() => {
-        resolve();
-      }, timeoutTime)
-    );
+    await new Promise(r => setTimeout(r, timeoutTime));
 
     document.getElementById(i).style.backgroundColor = "#37ba3e";
     if (i === n - 2) {
@@ -229,21 +218,13 @@ async function insertionSort(arr) {
     let height = document.getElementById(i).style.height;
     document.getElementById(i).style.backgroundColor = "#fef0a3";
 
-    await new Promise((resolve) =>
-      setTimeout(() => {
-        resolve();
-      }, timeoutTime)
-    );
+    await new Promise(r => setTimeout(r, timeoutTime));
 
     while (prev >= 0 && arr[prev] > curr) {
       document.getElementById(prev).style.backgroundColor = "#fef0a3";
 
-      await new Promise((resolve) =>
-        setTimeout(() => {
-          resolve();
-        }, timeoutTime)
-      );
-      
+      await new Promise(r => setTimeout(r, timeoutTime));
+
       arr[prev + 1] = arr[prev];
       document.getElementById(prev + 1).style.backgroundColor = "#5b3d5a";
       document.getElementById(prev).style.backgroundColor = "#5b3d5a";
@@ -251,11 +232,7 @@ async function insertionSort(arr) {
         document.getElementById(prev).style.height;
       prev--;
 
-      await new Promise((resolve) =>
-        setTimeout(() => {
-          resolve();
-        }, timeoutTime)
-      );
+      await new Promise(r => setTimeout(r, timeoutTime));
     }
 
     for (let k = i; k >= 0; k--) {
@@ -266,11 +243,6 @@ async function insertionSort(arr) {
     document.getElementById(prev + 1).style.height = height;
     document.getElementById(i).style.backgroundColor = "#37ba3e";
   }
-
-  // for (let j = 0; j < n; j++) {
-  //     document.getElementById(j).style.backgroundColor = "#37ba3e";
-  // }
-  console.log(arr);
 }
 
 // Starting sorting depending on the algorithm that the user chooses
