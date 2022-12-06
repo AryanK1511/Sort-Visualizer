@@ -12,6 +12,7 @@ let arr = [];
 let bubbleSortButtonClicked = false;
 let selectionSortButtonClicked = false;
 let insertionSortButtonClicked = false;
+let numberOfBarsRequestedByUser = 25;
 
 // Function to generate a random number within the given range
 function generateRandomNumber(start, end) {
@@ -30,11 +31,12 @@ function generateBars(numberOfBars = 25) {
         bar.style.width = `${800 / numberOfBars}px`;
 
         // Pushing the height as the value of an element in the array
-        arr.push(bar.style.height);
+        arr.push((barHeight * 10) + 5);
 
         // Adding the bar to the website
         barsContainer.appendChild(bar);
     }
+    console.log(arr);
 }
 
 // Function to delete all the bars
@@ -47,7 +49,7 @@ function clearBars() {
 // Ensuring that the number of bars change according to the user's choice
 dropdownItems.forEach(dropdownItem => {
     dropdownItem.addEventListener('click', () => {
-        const numberOfBarsRequestedByUser = dropdownItem.innerHTML;
+        numberOfBarsRequestedByUser = dropdownItem.innerHTML;
         clearBars();
         generateBars(numberOfBarsRequestedByUser);
     })
@@ -56,17 +58,18 @@ dropdownItems.forEach(dropdownItem => {
 // Makes sure that the bars are reset once the randomize button is clicked
 randomizeButton.addEventListener('click', () => {
     clearBars();
-    generateBars();
+    generateBars(numberOfBarsRequestedByUser);
 });
 
 // Generates bars by default when the page is loaded
 generateBars();
 
-// Changing theinformation paragraph content acording to the button clicked
+// Changing the information paragraph content acording to the button clicked
+// ========== BUBBLE SORT ==========
 bubbleSortButton.addEventListener('click', () => {
     bubbleSortButtonClicked = true;
-    insertionSortButton = false;
-    selectionSortButton = false;
+    insertionSortButtonClicked = false;
+    selectionSortButtonClicked = false;
     infoParagraph.innerHTML = `<p class="info-para">Bubble Sort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if they are in the wrong order.The pass through the list is repeated until the list is sorted. The algorithm, which is a comparison sort, is named for the way smaller or larger elements "bubble" to the top of the list. Although the algorithm is simple, it is too slow and impractical for most problems.
     <ul>
       <li>Worst-case time complexity: O(n^2)</li>
@@ -77,6 +80,28 @@ bubbleSortButton.addEventListener('click', () => {
   </p>`;
 })
 
+function bubbleSort(arr) {
+    let n = arr.length;
+    for (let i = 0; i < (n - 1); i++) {
+        for (let j = 0; j < (n - 1 - i); j++) {
+            if (arr[j] > arr[j + 1]) {
+                let bar1 = document.getElementById(j);
+                let bar2 = document.getElementById(j + 1);
+
+                let temp = arr[j];
+                let tempBarHeight = bar1.style.height;
+
+                arr[j] = arr[j + 1];
+                bar1.style.height = bar2.style.height;
+
+                arr[j + 1] = temp;
+                bar2.style.height = tempBarHeight;
+            }
+        }
+    }
+}
+
+// ========== SELECTION SORT ==========
 selectionSortButton.addEventListener('click', () => {
     bubbleSortButtonClicked = false;
     insertionSortButton = false;
@@ -91,6 +116,7 @@ selectionSortButton.addEventListener('click', () => {
   </p>`;
 })
 
+// ========== INSERTION SORT ==========
 insertionSortButton.addEventListener('click', () => {
     bubbleSortButtonClicked = false;
     insertionSortButton = true;
@@ -106,7 +132,9 @@ insertionSortButton.addEventListener('click', () => {
 })
 
 sortStartButton.addEventListener('click', () => {
-    console.log("HJello");
+    if (bubbleSortButtonClicked) {
+        bubbleSort(arr);
+    }
 })
 
 // ==================== JS for dropdown menu on the homepage ====================
