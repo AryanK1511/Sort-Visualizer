@@ -24,6 +24,7 @@ function generateRandomNumber(start, end) {
 
 // Function to create bars
 function generateBars(numberOfBars = 25) {
+    sortStartButton.disabled = false;
     for (let i = 0; i < numberOfBars; i++) {
         const bar = document.createElement('div');
         const barHeight = generateRandomNumber(1, 30);
@@ -210,6 +211,8 @@ function insertionSort(arr) {
 
 // Starting sorting depending on the algorithm that the user chooses
 sortStartButton.addEventListener('click', () => {
+    sortStartButton.disabled = true;
+
     if (bubbleSortButtonClicked) {
         bubbleSort(arr);
     }

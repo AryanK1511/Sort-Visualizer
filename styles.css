@@ -176,6 +176,22 @@
     text-align: center;
 }
 
+button[disabled=disabled], button:disabled {
+    color: #2a2d35;
+    border-color: #2a2d35;
+    box-shadow: none;
+    text-shadow: none;
+}
+
+button[disabled=disabled]:hover, button:disabled:hover{
+    color: #2a2d35;
+    border-color: #2a2d35;
+    box-shadow: none;
+    text-shadow: none;
+    background-color: transparent;
+    cursor: default;
+}
+
 .start-end-btn {
     padding: 12px 20px;
     color: #fedfb4;
