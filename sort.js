@@ -1,1 +1,0 @@
-console.log(parseInt("500ms"));
