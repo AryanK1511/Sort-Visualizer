@@ -10,6 +10,7 @@ const insertionSortButton = document.getElementById("insertion-sort-selection");
 const sortStartButton = document.querySelector("#start-btn");
 const sortEndButton = document.querySelector("#end-btn");
 
+// Defining global variables
 let arr = [];
 let bubbleSortButtonClicked = false;
 let selectionSortButtonClicked = false;
@@ -211,17 +212,18 @@ function insertionSort(arr) {
 
 // Starting sorting depending on the algorithm that the user chooses
 sortStartButton.addEventListener('click', () => {
-    sortStartButton.disabled = true;
-
     if (bubbleSortButtonClicked) {
+        sortStartButton.disabled = true;
         bubbleSort(arr);
     }
 
     if (selectionSortButtonClicked) {
+        sortStartButton.disabled = true;
         selectionSort(arr);
     }
 
     if (insertionSortButtonClicked) {
+        sortStartButton.disabled = true;
         insertionSort(arr);
     }
 })
