@@ -2,6 +2,7 @@
 const barsContainer = document.querySelector(".bars-container");
 const randomizeButton = document.querySelector(".randomize-btn");
 const dropdownItems = document.querySelectorAll(".dropdown-item");
+const speedDropdownItems = document.querySelectorAll(".speed-dropdown-item");
 const infoParagraph = document.querySelector(".info-para");
 const bubbleSortButton = document.getElementById("bubble-sort-selection");
 const selectionSortButton = document.getElementById("selection-sort-selection");
@@ -14,6 +15,7 @@ let bubbleSortButtonClicked = false;
 let selectionSortButtonClicked = false;
 let insertionSortButtonClicked = false;
 let numberOfBarsRequestedByUser = 25;
+let timeoutTime = 20;
 
 // Function to generate a random number within the given range
 function generateRandomNumber(start, end) {
@@ -56,6 +58,13 @@ dropdownItems.forEach(dropdownItem => {
     })
 })
 
+// Ensuring that the speed changes according to the user's choice
+speedDropdownItems.forEach(speedDropdownItem => {
+    speedDropdownItem.addEventListener('click', () => {
+        timeoutTime = parseInt(String(speedDropdownItem.innerHTML));
+    })
+})
+
 // Makes sure that the bars are reset once the randomize button is clicked
 randomizeButton.addEventListener('click', () => {
     clearBars();
@@ -81,14 +90,6 @@ bubbleSortButton.addEventListener('click', () => {
   </p>`;
 })
 
-// function sleep(ms) {
-//     return new Promise(resolve => setTimeout(resolve, ms));
-// }
-
-// const promise = new Promise((resolve) => {
-//     setTimeout(resolve, 1000);
-// })
-
 async function bubbleSort(arr) {
     let n = arr.length;
     let bar1, bar2;
@@ -97,11 +98,13 @@ async function bubbleSort(arr) {
             bar1 = document.getElementById(j);
             bar2 = document.getElementById(j + 1);
 
-            // To pause the execution of code for 300 milliseconds
+            bar1.style.backgroundColor = "yellow";
+            bar2.style.backgroundColor = "yellow";
+
             await new Promise((resolve) =>
             setTimeout(() => {
                 resolve();
-            }, 20)
+            }, timeoutTime)
             );
 
             if (arr[j] > arr[j + 1]) {
@@ -114,12 +117,23 @@ async function bubbleSort(arr) {
                 arr[j + 1] = temp;
                 bar2.style.height = tempBarHeight;
 
+                bar1.style.backgroundColor = "blue";
+                bar2.style.backgroundColor = "blue";
+
                 await new Promise((resolve) =>
                 setTimeout(() => {
                     resolve();
-                }, 20)
+                }, timeoutTime)
                 );
+
             }
+
+            bar1.style.backgroundColor = "#eb0a42";
+            bar2.style.backgroundColor = "#eb0a42";
+        }
+        bar2.style.backgroundColor = "green";
+        if (i === (n - 2)) {
+            bar1.style.backgroundColor = "green";
         }
     }
 }
