@@ -156,26 +156,52 @@ selectionSortButton.addEventListener('click', () => {
 })
 
 // Implementing the algorithm
-function selectionSort(arr) {
+async function selectionSort(arr) {
     let n = arr.length;
+    let bar1, bar2;
     for (let i = 0; i < (n - 1); i++) {
         let minPos = i;
+        document.getElementById(i).style.backgroundColor = "#5b3d5a";
         for (let j = i + 1; j < n; j++) {
+            document.getElementById(j).style.backgroundColor = "#fef0a3";
+
+            await new Promise((resolve) =>
+                setTimeout(() => {
+                    resolve();
+                }, timeoutTime)
+                );
+
             if (arr[minPos] > arr[j]) {
+                if (minPos !== i) {
+                    document.getElementById(minPos).style.backgroundColor = "#eb0a42";
+                }
                 minPos = j;
+                document.getElementById(minPos).style.backgroundColor = "#5b3d5a";
+            } else {
+                document.getElementById(j).style.backgroundColor = "#eb0a42";
             }
         }
-        let bar1 = document.getElementById(minPos);
-        let bar2 = document.getElementById(i);
 
         let temp = arr[minPos];
-        let tempBarHeight = bar1.style.height;
+        let tempBarHeight = document.getElementById(minPos).style.height;
 
         arr[minPos] = arr[i];
-        bar1.style.height = bar2.style.height;
+        document.getElementById(minPos).style.height = document.getElementById(i).style.height;
 
         arr[i] = temp;
-        bar2.style.height = tempBarHeight;
+        document.getElementById(i).style.height = tempBarHeight;
+        document.getElementById(minPos).style.backgroundColor = "#eb0a42";
+
+        await new Promise((resolve) =>
+                setTimeout(() => {
+                    resolve();
+                }, timeoutTime)
+                );
+
+        document.getElementById(i).style.backgroundColor = "#37ba3e";
+        if (i === (n - 2)) {
+            document.getElementById(i).style.backgroundColor = "#37ba3e";
+        }
     }
 }
 
