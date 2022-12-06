@@ -6,7 +6,8 @@ const infoParagraph = document.querySelector(".info-para");
 const bubbleSortButton = document.getElementById("bubble-sort-selection");
 const selectionSortButton = document.getElementById("selection-sort-selection");
 const insertionSortButton = document.getElementById("insertion-sort-selection");
-const sortStartButton = document.querySelector(".start-btn");
+const sortStartButton = document.querySelector("#start-btn");
+const sortEndButton = document.querySelector("#end-btn");
 
 let arr = [];
 let bubbleSortButtonClicked = false;
@@ -25,10 +26,10 @@ function generateBars(numberOfBars = 25) {
         const bar = document.createElement('div');
         const barHeight = generateRandomNumber(1, 30);
         bar.classList.add('bar');
-        bar.style.transform = `translateX(${i * (800 / numberOfBars)}px)`;
+        bar.style.transform = `translateX(${i * (1000 / numberOfBars)}px)`;
         bar.style.height = `${(barHeight * 10) + 5}px`;
         bar.id = i;
-        bar.style.width = `${800 / numberOfBars}px`;
+        bar.style.width = `${1000 / numberOfBars}px`;
 
         // Pushing the height as the value of an element in the array
         arr.push((barHeight * 10) + 5);
@@ -80,14 +81,30 @@ bubbleSortButton.addEventListener('click', () => {
   </p>`;
 })
 
-function bubbleSort(arr) {
+// function sleep(ms) {
+//     return new Promise(resolve => setTimeout(resolve, ms));
+// }
+
+// const promise = new Promise((resolve) => {
+//     setTimeout(resolve, 1000);
+// })
+
+async function bubbleSort(arr) {
     let n = arr.length;
+    let bar1, bar2;
     for (let i = 0; i < (n - 1); i++) {
         for (let j = 0; j < (n - 1 - i); j++) {
-            if (arr[j] > arr[j + 1]) {
-                let bar1 = document.getElementById(j);
-                let bar2 = document.getElementById(j + 1);
+            bar1 = document.getElementById(j);
+            bar2 = document.getElementById(j + 1);
 
+            // To pause the execution of code for 300 milliseconds
+            await new Promise((resolve) =>
+            setTimeout(() => {
+                resolve();
+            }, 20)
+            );
+
+            if (arr[j] > arr[j + 1]) {
                 let temp = arr[j];
                 let tempBarHeight = bar1.style.height;
 
@@ -96,6 +113,12 @@ function bubbleSort(arr) {
 
                 arr[j + 1] = temp;
                 bar2.style.height = tempBarHeight;
+
+                await new Promise((resolve) =>
+                setTimeout(() => {
+                    resolve();
+                }, 20)
+                );
             }
         }
     }
@@ -142,8 +165,8 @@ function selectionSort(arr) {
 // ========== INSERTION SORT ==========
 insertionSortButton.addEventListener('click', () => {
     bubbleSortButtonClicked = false;
-    insertionSortButton = true;
-    selectionSortButton = false;
+    insertionSortButtonClicked = true;
+    selectionSortButtonClicked = false;
     infoParagraph.innerHTML = `<p class="info-para">Insertion Sort is a simple sorting algorithm that iterates through an array and at each iteration it removes one element from the array, finds the location it belongs to in the sorted list and inserts it there, repeating until no elements remain in the unsorted list. It is an in-place, stable sorting algorithm that is inefficient on large input arrays but works well for data sets that are almost sorted. It is more efficient in practice compared to other quadratic sorting algorithms like bubble sort and selection sort.
     <ul>
       <li>Worst-case time complexity: O(n^2)</li>
@@ -159,8 +182,6 @@ function insertionSort(arr) {
     for (let i = 1; i < n; i++) {
         let curr = arr[i];
         let prev = i - 1;
-        let currBar = document.getElementById(i);
-        let prevBar = document.getElementById(i - 1);
 
         while (prev >= 0 && arr[prev] > curr) {
             arr[prev + 1] = arr[prev];
@@ -169,8 +190,6 @@ function insertionSort(arr) {
 
         arr[prev + 1] = curr;
     }
-
-    return arr;
 }
 
 sortStartButton.addEventListener('click', () => {
@@ -180,6 +199,10 @@ sortStartButton.addEventListener('click', () => {
 
     if (selectionSortButtonClicked) {
         selectionSort(arr);
+    }
+
+    if (insertionSortButtonClicked) {
+        insertionSort(arr);
     }
 })
 

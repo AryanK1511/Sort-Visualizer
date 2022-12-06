@@ -157,7 +157,7 @@
 
 /* Bars */
 .bars-container {
-    width: 800px;
+    width: 1000px;
     height: 384px;
     margin: 0 auto;
     position: relative;
@@ -176,7 +176,7 @@
     text-align: center;
 }
 
-.start-btn {
+.start-end-btn {
     padding: 12px 20px;
     color: #fedfb4;
     text-shadow: 0 0 0.9em #fedfb4;
@@ -190,7 +190,7 @@
     font-weight: 600;
 }
 
-.start-btn:hover {
+.start-end-btn:hover {
     background-color: #fedfb4;
     color: #010514;
     text-shadow: 0 0 0.9em #010514;
