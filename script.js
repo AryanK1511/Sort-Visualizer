@@ -104,8 +104,8 @@ function bubbleSort(arr) {
 // ========== SELECTION SORT ==========
 selectionSortButton.addEventListener('click', () => {
     bubbleSortButtonClicked = false;
-    insertionSortButton = false;
-    selectionSortButton = true;
+    insertionSortButtonClicked = false;
+    selectionSortButtonClicked = true;
     infoParagraph.innerHTML = `<p class="info-para">Selection Sort is an in-place comparison sorting algorithm that divides the input list into two parts: the sublist of items already sorted, which is built up from left to right at the front (left) of the list, and the sublist of items remaining to be sorted that occupy the rest of the list. Initially, the sorted sublist is empty and the unsorted sublist is the entire input list. The algorithm proceeds by finding the smallest element in the unsorted sublist, exchanging (swapping) it with the leftmost unsorted element (putting it in sorted order), and moving the sublist boundaries one element to the right.
     <ul>
       <li>Worst-case time complexity: O(n^2)</li>
@@ -115,6 +115,29 @@ selectionSortButton.addEventListener('click', () => {
     </ul>
   </p>`;
 })
+
+function selectionSort(arr) {
+    let n = arr.length;
+    for (let i = 0; i < (n - 1); i++) {
+        let minPos = i;
+        for (let j = i + 1; j < n; j++) {
+            if (arr[minPos] > arr[j]) {
+                minPos = j;
+            }
+        }
+        let bar1 = document.getElementById(minPos);
+        let bar2 = document.getElementById(i);
+
+        let temp = arr[minPos];
+        let tempBarHeight = bar1.style.height;
+
+        arr[minPos] = arr[i];
+        bar1.style.height = bar2.style.height;
+
+        arr[i] = temp;
+        bar2.style.height = tempBarHeight;
+    }
+}
 
 // ========== INSERTION SORT ==========
 insertionSortButton.addEventListener('click', () => {
@@ -131,9 +154,32 @@ insertionSortButton.addEventListener('click', () => {
   </p>`;
 })
 
+function insertionSort(arr) {
+    let n = arr.length;
+    for (let i = 1; i < n; i++) {
+        let curr = arr[i];
+        let prev = i - 1;
+        let currBar = document.getElementById(i);
+        let prevBar = document.getElementById(i - 1);
+
+        while (prev >= 0 && arr[prev] > curr) {
+            arr[prev + 1] = arr[prev];
+            prev--;
+        }
+
+        arr[prev + 1] = curr;
+    }
+
+    return arr;
+}
+
 sortStartButton.addEventListener('click', () => {
     if (bubbleSortButtonClicked) {
         bubbleSort(arr);
+    }
+
+    if (selectionSortButtonClicked) {
+        selectionSort(arr);
     }
 })
 
