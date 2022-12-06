@@ -1,8 +1,8 @@
 // ==================== CREATING BARS AND IMPLEMENTING SORTING ALGORITHMS ====================
 const barsContainer = document.querySelector(".bars-container");
 const randomizeButton = document.querySelector(".randomize-btn");
-const dropdownItems = document.querySelectorAll(".dropdown-item");
-const speedDropdownItems = document.querySelectorAll(".speed-dropdown-item");
+const dropdownItems = document.querySelectorAll(".di");
+const speedDropdownItems = document.querySelectorAll(".sdi");
 const infoParagraph = document.querySelector(".info-para");
 const bubbleSortButton = document.getElementById("bubble-sort-selection");
 const selectionSortButton = document.getElementById("selection-sort-selection");
@@ -39,7 +39,6 @@ function generateBars(numberOfBars = 25) {
         // Adding the bar to the website
         barsContainer.appendChild(bar);
     }
-    console.log(arr);
 }
 
 // Function to delete all the bars
@@ -90,6 +89,7 @@ bubbleSortButton.addEventListener('click', () => {
   </p>`;
 })
 
+// Implementing the algorithm
 async function bubbleSort(arr) {
     let n = arr.length;
     let bar1, bar2;
@@ -98,8 +98,8 @@ async function bubbleSort(arr) {
             bar1 = document.getElementById(j);
             bar2 = document.getElementById(j + 1);
 
-            bar1.style.backgroundColor = "yellow";
-            bar2.style.backgroundColor = "yellow";
+            bar1.style.backgroundColor = "#fef0a3";
+            bar2.style.backgroundColor = "#fef0a3";
 
             await new Promise((resolve) =>
             setTimeout(() => {
@@ -117,8 +117,8 @@ async function bubbleSort(arr) {
                 arr[j + 1] = temp;
                 bar2.style.height = tempBarHeight;
 
-                bar1.style.backgroundColor = "blue";
-                bar2.style.backgroundColor = "blue";
+                bar1.style.backgroundColor = "#5b3d5a";
+                bar2.style.backgroundColor = "#5b3d5a";
 
                 await new Promise((resolve) =>
                 setTimeout(() => {
@@ -131,9 +131,9 @@ async function bubbleSort(arr) {
             bar1.style.backgroundColor = "#eb0a42";
             bar2.style.backgroundColor = "#eb0a42";
         }
-        bar2.style.backgroundColor = "green";
+        bar2.style.backgroundColor = "#37ba3e";
         if (i === (n - 2)) {
-            bar1.style.backgroundColor = "green";
+            bar1.style.backgroundColor = "#37ba3e";
         }
     }
 }
@@ -153,6 +153,7 @@ selectionSortButton.addEventListener('click', () => {
   </p>`;
 })
 
+// Implementing the algorithm
 function selectionSort(arr) {
     let n = arr.length;
     for (let i = 0; i < (n - 1); i++) {
@@ -191,6 +192,7 @@ insertionSortButton.addEventListener('click', () => {
   </p>`;
 })
 
+// Implementing the algorithm
 function insertionSort(arr) {
     let n = arr.length;
     for (let i = 1; i < n; i++) {
@@ -206,6 +208,7 @@ function insertionSort(arr) {
     }
 }
 
+// Starting sorting depending on the algorithm that the user chooses
 sortStartButton.addEventListener('click', () => {
     if (bubbleSortButtonClicked) {
         bubbleSort(arr);
@@ -218,6 +221,11 @@ sortStartButton.addEventListener('click', () => {
     if (insertionSortButtonClicked) {
         insertionSort(arr);
     }
+})
+
+// Reloading the page once the end button is clicked
+sortEndButton.addEventListener('click', () => {
+    window.location.reload();
 })
 
 // ==================== JS for dropdown menu on the homepage ====================
