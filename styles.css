@@ -74,6 +74,7 @@ main {
 .algo-dropdown {
     width: 300px;
     position: relative;
+    z-index: 2;
 }
 
 .algo-dropdown * {
@@ -122,7 +123,7 @@ main {
     opacity: 0;
     display: none;
     transition: 0.2s;
-    z-index: 1;
+    z-index: 2;
 }
 
 .menu li {
@@ -215,3 +216,20 @@ button[disabled=disabled]:hover, button:disabled:hover{
 }
 
 /* ========== Making the website responsive ========== */
+@media (max-width: 1010px) { 
+    .bars-container {
+        width: 800px;
+    }
+}
+
+@media (max-width: 810px) { 
+    .bars-container {
+        width: 500px;
+    }
+}
+
+@media (max-width: 510px) { 
+    .bars-container {
+        width: 300px;
+    }
+}

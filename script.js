@@ -33,9 +33,21 @@ function generateBars(numberOfBars = 25) {
 
     // Adding styles
     bar.classList.add("bar");
-    bar.style.transform = `translateX(${i * (1000 / numberOfBars)}px)`;
     bar.style.height = `${barHeight * 10 + 5}px`;
-    bar.style.width = `${1000 / numberOfBars}px`;
+
+    if (window.innerWidth < 1010 && window.innerWidth >= 810) {
+      bar.style.transform = `translateX(${i * (800 / numberOfBars)}px)`;
+      bar.style.width = `${800 / numberOfBars}px`;
+    } else if (window.innerWidth < 810 && window.innerWidth >= 510) {
+      bar.style.transform = `translateX(${i * (500 / numberOfBars)}px)`;
+      bar.style.width = `${500 / numberOfBars}px`;
+    } else if (window.innerWidth < 510) {
+      bar.style.transform = `translateX(${i * (300 / numberOfBars)}px)`;
+      bar.style.width = `${300 / numberOfBars}px`;
+    } else {
+      bar.style.transform = `translateX(${i * (1000 / numberOfBars)}px)`;
+      bar.style.width = `${1000 / numberOfBars}px`;
+    }
 
     // Assiging each div a unique id to reference individual bars later in the code
     bar.id = i;
