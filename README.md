@@ -4,3 +4,5 @@ This project implements three basic sorting techniques:
 - Bubble Sort
 - Insertion Sort
 - Selection Sort
+
+This website is hosted here: https://jolly-griffin-cf9b95.netlify.app
