@@ -5,4 +5,6 @@ This project implements three basic sorting techniques:
 - Insertion Sort
 - Selection Sort
 
-This website is hosted here: https://aryank-sort-visualizer.netlify.app
+This website is hosted [here](https://aryank-sort-visualizer.netlify.app)
+
+**Last Updated**: 6 January 2023
